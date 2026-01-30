@@ -1,0 +1,371 @@
+<!doctype html>
+<html class="scroll-smooth">
+<head>
+    <title>Home Page</title>
+    <link rel="icon" href="{{ url_for('static', filename='thumb.svg') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='dist/output.css') }}" rel="stylesheet">
+</head>
+<body class="font-inter">
+    <div class="hero relative w-screen h-screen overflow-hidden">
+        <!-- Hero Banner Images -->
+        <div class="absolute inset-0">
+            <img src="{{ url_for('static', filename='Banner.png') }}" 
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100" 
+                id="default-banner">
+
+            <div class="relative top-5 left-0 w-full px-8 z-20">
+
+                <!-- Logo -->
+                <img src="{{ url_for('static', filename='Name.svg') }}"
+                    class="absolute w-12/13 opacity-20 animate-topimage"
+                    alt="Top Image">
+
+                <!-- Text row -->
+                <div class="absolute top-45 flex gap-6 text-black/20 text-xl font-inter font-extrabold animate-nav">
+                    <a href="#works"><span class="cursor-pointer hover:text-black">Works</span></a>
+                    <a href="#contact"><span class="cursor-pointer hover:text-black">Contact</span></a>
+                    <a href="#prologue"><span class="cursor-pointer hover:text-black">Prologue</span></a>
+                </div>
+
+            </div>
+
+            
+            <!-- Hover banners -->
+            <img src="{{ url_for('data', filename=data[0].project_id + '/' + data[0].hero_image) }}" 
+                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
+                id="banner-1">
+            <img src="{{ url_for('data', filename=data[1].project_id + '/' + data[1].hero_image) }}" 
+                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
+                id="banner-2">
+            <img src="{{ url_for('data', filename=data[2].project_id + '/' + data[2].hero_image) }}" 
+                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
+                id="banner-3">
+            <img src="{{ url_for('data', filename=data[3].project_id + '/' + data[3].hero_image) }}" 
+                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
+                id="banner-4">
+        </div>
+
+        <!-- Texts -->
+        <div class="absolute bottom-7 left-7 space-y-1 text-white text-4xl font-inter font-extrabold z-20">
+            <p class="hover:text-[#E2E2E2]"
+            onmouseover="showBanner(1)" 
+            onmouseout="hideBanner(1)">
+            {{ data[0].name }} <span class="text-xl align-top">{{ data[0].year }}</span>
+            </p>
+            <p class="hover:text-[#E2E2E2]"
+            onmouseover="showBanner(2)" 
+            onmouseout="hideBanner(2)">
+            {{ data[1].name }} <span class="text-xl align-top">{{ data[1].year }}</span>
+            </p>
+            <p class="hover:text-[#E2E2E2]"
+            onmouseover="showBanner(3)" 
+            onmouseout="hideBanner(3)">
+            {{ data[2].name }} <span class="text-xl align-top">{{ data[2].year }}</span>
+            </p>
+            <p class="hover:text-[#E2E2E2]"
+            onmouseover="showBanner(4)" 
+            onmouseout="hideBanner(4)">
+            {{ data[3].name }} <span class="text-xl align-top">{{ data[3].year }}</span>
+            </p>
+        </div>
+    </div>
+
+    <div id="prologue" class="prologue relative w-screen">
+        <div class="grid grid-cols-3 gap-2 px-6 pt-25">
+            <div class="col-span-1 font-bold opacity-55 text-2xl flex items-end">
+                <p>Prologue</p>
+            </div>
+            <div class="col-span-2 font-bold text-4xl flex items-end pl-2">
+                <p>Lê Hồng Phát  黎洪發</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 px-6 pt-8">
+            <img class="col-span-1" src="{{ url_for('static', filename='Selfie.png') }}">
+            <div class="col-span-2 border-l-1 pl-2">
+                <div class="pt-10">
+                </div>
+                <div id="contact" class="contact-info border-t-1 border-b-1 grid grid-cols-8 gap-7 flex items-center py-3 font-medium text-sm opacity-55">
+                    <div class="col-span-1">
+                    </div>
+                    <div class="col-span-1 text-balance break-all">
+                        (+84) 868 911 560
+                    </div>
+                    <div class="col-span-1 text-balance break-all">
+                        hongphat03@gmail.com
+                    </div>
+                    <div class="col-span-1 text-balance break-all">
+                        linkedin.com/in/lehogpht
+                    </div>
+                    <div class="col-span-1 text-balance break-all">
+                        behance.net/lehogpht
+                    </div>
+                </div>
+                <div class="education-info">
+                    <div class="pt-18 pb-3">
+                        <p class="font-bold text-4xl">Education</p>
+                    </div>
+                    <div class="border-t-1 grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2018 - 2021
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            Phu Nhuan High School
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-7 border-t-1">
+                        </div>
+                    </div>
+                    <div class="border-b-1 grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2021 - 2026
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            Van Lang University
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                            Bachelor of Graphic Design
+                        </div>
+                    </div>
+                </div>
+                <div class="experience-info">
+                    <div class="pt-18 pb-3">
+                        <p class="font-bold text-4xl">Experience</p>
+                    </div>
+                    <div class="border-t-1 grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2018 - 2021
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            PNM (Phu Nhuan Multimedia Club)
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                            Graphic Designer / Director
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-7 border-t-1">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2021 - 2023
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            deThird
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                            Junior Graphic Designer
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-7 border-t-1">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2023
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            AND Agency
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                            Creative Designer
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-7 border-t-1">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2023 - 2025
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            Museday
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                            Brand Designer / Creative Lead
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-7 border-t-1">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2025
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            RX Trader
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                            Graphic Designer (Contingent)
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-7 border-t-1">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2025
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            Wolf ON
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                            Packaging & Product Designer
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-8">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-7 border-t-1">
+                        </div>
+                    </div>
+                    <div class="border-b-1 grid grid-cols-8 gap-7 flex items-center py-1">
+                        <div class="col-span-1">
+                        </div>
+                        <div class="col-span-1 text-balance font-medium text-xs italic">
+                            2024 - 2025
+                        </div>
+                        <div class="col-span-3 text-balance text-medium">
+                            deThird
+                        </div>
+                        <div class="col-span-3 text-balance text-xs italic">
+                            Senior Creative / Creative Lead
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 px-6 pt-20">
+            <div class="title col-span-1">
+                <p class="font-bold text-3xl">Creative Designer&nbsp;&nbsp;&<br>Visual Storyteller</p>
+                <p class="text-xl opacity-55 pt-2">Designing visual that feel like emotion wearing shapes</p>
+            </div>
+            <div class="about col-span-2 pl-2">
+                <p class="text-xl/6 opacity-55">Brand & Packaging Designer with 5+ years of experience across agencies, consumer brands, and international exhibitions. Specialized in building visual identities and packaging systems that connect with Gen Z & Millennials. Proven ability to scale new brands from zero to thousands of customers, with work spanning beauty, lifestyle, and large-scale industrial events</p>
+                <p class="text-xl opacity-55">Designing visual that feel like emotion wearing shapes.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="works" class="feature-works relative w-screen px-6 pb-15">
+        <div class="text-6xl pt-30 font-bold">
+            Feature Works
+        </div>
+
+        <div id="cardGrid" class="overflow-hidden grid grid-cols-3 pt-15 gap-x-5 gap-y-10 transition-all duration-500">
+            {%for project in data%}
+                <a href="{{ url_for('project', project_id=project.project_id) }}">
+                    <div class="tile">
+                    <img src="{{ url_for('data', filename=project.project_id + '/' + project.hero_image) }}" alt="{{ project.title }}" class="w-full h-auto">
+                    <p class="text-xs italic pt-7 font-medium opacity-55">{{ project.client }}</p>
+                    <div class="columns-2">
+                        <p class="font-bold text-lg whitespace-nowrap">{{ project.name }}</p>
+                        <p class="opacity-55 text-right">{{ project.year }}</p>
+                    </div>
+                </div></a>
+            {%endfor%}
+        </div>
+
+        <div class="flex justify-center pt-4">
+            <button id="toggleGridBtn" class="text-black opacity-55 rounded hover:opacity-100">
+                See More
+            </button>
+        </div>
+    </div>
+
+    <div class="footer relative w-screen px-10 pt-10 pb-30 bg-black">
+        <div class="grid grid-cols-3 text-white">
+            <div class="col-span-2">
+                <img src="{{ url_for('static', filename='Footer_logo.svg') }}" alt="Footer Logo">
+                <p class="font-medium text-xs opacity-55 pt-10">2026 ® All rights reserved.</p>
+            </div>
+            <div class="col-span-1 pl-20 pt-5 font-semibold flex gap-10">
+                <a href="#works"><p class="hover:opacity-55 cursor-pointer">Works</p></a>
+                <a href="#contact"><p class="hover:opacity-55 cursor-pointer">Contact</p></a>
+                <a href="#prologue"><p class="hover:opacity-55 cursor-pointer">Prologue</p></a>
+            </div>
+        </div>
+    </div>
+<script>
+function showBanner(n) {
+    document.getElementById('default-banner').classList.add('opacity-0');
+    for (let i = 1; i <= 4; i++) {
+        const banner = document.getElementById(`banner-${i}`);
+        if (i === n) {
+            banner.classList.add('opacity-100');
+        } else {
+            banner.classList.remove('opacity-100');
+        }
+    }
+}
+
+function hideBanner(n) {
+    document.getElementById(`banner-${n}`).classList.remove('opacity-100');
+    document.getElementById('default-banner').classList.remove('opacity-0');
+}
+
+const btn = document.getElementById("toggleGridBtn");
+const grid = document.getElementById("cardGrid");
+
+const collapsedHeight = 460; // height to show initially
+grid.style.maxHeight = collapsedHeight + "px"; // collapse on page load
+
+let expanded = false;
+
+btn.addEventListener("click", () => {
+    expanded = !expanded;
+
+    if (expanded) {
+        grid.style.maxHeight = grid.scrollHeight + "px"; // expand to full height
+        btn.textContent = "See Less";
+    } else {
+        grid.style.maxHeight = collapsedHeight + "px"; // collapse back
+        btn.textContent = "See More";
+    }
+});
+</script>
+
+</body>
+</html>

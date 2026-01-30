@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ project.name }}</title>
+    <link rel="icon" href="{{ url_for('static', filename='thumb.svg') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='dist/output.css') }}" rel="stylesheet">
+</head>
+<body class="font-inter">
+    <div class="hero relative w-screen h-[45vh] overflow-hidden animate-hero-shrink">
+        <!-- Hero Banner Images -->
+        <div class="absolute inset-0">
+            <div class="relative top-5 left-0 w-full h-full px-8">
+                <!-- Logo -->
+                 <a href="/">
+                    <img src="{{ url_for('static', filename='Name.svg') }}"
+                        class="absolute w-12/13 animate-topimage"
+                        alt="Top Image">
+                 </a>
+
+                <!-- Text row -->
+                <div class="absolute top-45 flex gap-6 text-black text-xl font-inter font-extrabold animate-nav">
+                    <a href="/#works"><span class="cursor-pointer hover:text-black/20">Works</span></a>
+                    <a href="/#contact"><span class="cursor-pointer hover:text-black/20">Contact</span></a>
+                    <a href="/#prologue"><span class="cursor-pointer hover:text-black/20">Prologue</span></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="project-content w-screen px-8 pb-8">
+        <img src="{{ url_for('data', filename=project.project_id + '/' + project.hero_image) }}" alt="Project Image">
+        <div class="grid grid-cols-2 py-16 items-start">
+            <div>
+                <p class="font-bold text-5xl pb-5">{{ project.name }}</p>
+                <p class="font-bold text-sm">Industry</p>
+                <p class="text-sm pb-3">{{ project.industry }}</p>
+                <p class="font-bold text-sm">What We Did</p>
+                <p class="text-sm">{{ project.whatwedid }}</p>
+                
+                {% if project.roi1_number %}
+                <div class="roi pt-20">
+                    <p class="font-bold text-5xl">{{ project.roi1_number }}</p>
+                    <p class="font-bold text-sm">{{ project.roi1_desc1 }}</p>
+                    <p class="text-sm">{{ project.roi1_desc2 }}</p>
+                </div>
+                {% endif %}
+
+                {% if project.roi2_number %}
+                <div class="roi pt-20">
+                    <p class="font-bold text-5xl">{{ project.roi2_number }}</p>
+                    <p class="font-bold text-sm">{{ project.roi2_desc1 }}</p>
+                    <p class="text-sm">{{ project.roi2_desc2 }}</p>
+                </div>
+                {% endif %}
+
+                {% if project.roi3_number %}
+                <div class="roi pt-20">
+                    <p class="font-bold text-5xl">{{ project.roi3_number }}</p>
+                    <p class="font-bold text-sm">{{ project.roi3_desc1 }}</p>
+                    <p class="text-sm">{{ project.roi3_desc2 }}</p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="">
+                <p class="font-bold text-2xl">{{ project.title }}</p>
+                <br>
+                <p class="whitespace-pre-line">{{ project.description }}</p>
+            </div>
+        </div>
+        {% for images in project.images %}
+        <div class="grid {% if images|length == 2 %}grid-cols-2{% endif %} gap-0">
+            {% for image in images %}
+            <img src="{{ url_for('data', filename=project.project_id + '/' + image) }}" alt="">
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer relative w-screen px-10 pt-10 pb-30 bg-black">
+        <div class="grid grid-cols-3 text-white">
+            <div class="col-span-2">
+                <img src="{{ url_for('static', filename='Footer_logo.svg') }}" alt="Footer Logo">
+                <p class="font-medium text-xs opacity-55 pt-10">2026 ® All rights reserved.</p>
+            </div>
+            <div class="col-span-1 pl-20 pt-5 font-semibold flex gap-10">
+                <a href="/#works"><p class="hover:opacity-55 cursor-pointer">Works</p></a>
+                <a href="/#contact"><p class="hover:opacity-55 cursor-pointer">Contact</p></a>
+                <a href="/#prologue"><p class="hover:opacity-55 cursor-pointer">Prologue</p></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

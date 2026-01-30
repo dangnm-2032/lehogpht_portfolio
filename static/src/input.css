@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+
+  --font-weight-100: 100;
+  --font-weight-200: 200;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+  --font-weight-900: 900;
+}
+
+/* Tailwind custom animation */
+@keyframes topimage-animation {
+    0%, 20% {
+        /* First 2s: remain in center-top */
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        /* Shrink and move to top-left */
+        transform: translate(-35%, -35%) scale(0.3);
+    }
+}
+
+.animate-topimage {
+    animation: topimage-animation 0.5s linear 0s forwards;
+    animation-delay: 2s; /* wait 2s before starting */
+}
+
+/* animation: moves from logo left-aligned to top-right */
+@keyframes nav-animation {
+  0%, 20% {
+    transform: translate(0, 0); /* start under logo */
+  }
+  100% {
+    transform: translate(330%, -625%); /* move to approx top-right */
+  }
+}
+
+.animate-nav {
+  animation: nav-animation 0.5s linear 0s forwards;
+  will-change: transform;
+  animation-delay: 2s;
+}
+
+/* Shrink hero height from full-screen to compact */
+@keyframes hero-shrink {
+  0% {
+    height: 45vh; /* full screen */
+  }
+  100% {
+    height: 100px; /* final compact height */
+  }
+}
+
+.animate-hero-shrink {
+  animation: hero-shrink 0.6s linear forwards;
+  animation-delay: 2s; /* wait until logo/nav animation ends */
+}
