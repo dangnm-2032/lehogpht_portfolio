@@ -81,6 +81,10 @@ def admin():
     
     return render_template("admin.html", projects=projects_data)
 
+@app.route("/admin/help")
+def admin_help():
+    return render_template("admin_help.html")
+
 @app.route("/admin/login", methods=["POST"])
 def admin_login():
     username = request.form.get("username")
@@ -259,4 +263,4 @@ def project_change_order(project_id, current_order):
     return redirect(url_for("admin"))
 
 if __name__ == "__main__":
-    app.run(debug=True, port=6000, host="0.0.0.0")
+    app.run(debug=True)
