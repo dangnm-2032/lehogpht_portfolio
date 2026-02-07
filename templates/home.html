@@ -11,47 +11,40 @@
     <link href="{{ url_for('static', filename='dist/output.css') }}" rel="stylesheet">
 </head>
 <body class="font-inter">
-    <div class="hero relative w-screen h-screen overflow-hidden">
+    <div class="relative w-screen h-screen">
         <!-- Hero Banner Images -->
         <div class="absolute inset-0">
             <img src="{{ url_for('static', filename='Banner.png') }}" 
-                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100" 
-                id="default-banner">
+            class="w-full h-full object-cover" id="default-banner" alt="">
 
-            <div class="relative top-5 left-0 w-full px-8 z-20">
-
-                <!-- Logo -->
-                <img src="{{ url_for('static', filename='Name.svg') }}"
-                    class="absolute w-12/13 opacity-20 animate-topimage"
-                    alt="Top Image">
-
-                <!-- Text row -->
-                <div class="absolute top-45 flex gap-6 text-black/20 text-xl font-inter font-extrabold animate-nav">
+            <div class="absolute top-5 left-10 right-10 md:flex md:justify-between z-10">
+                <img src="{{ url_for('static', filename='Name.svg') }}" 
+                class="md:w-2/7 opacity-20" alt="">
+                <div class="flex gap-6 text-black/20 items-center text-xl font-extrabold">
                     <a href="#works"><span class="cursor-pointer hover:text-black">Works</span></a>
                     <a href="#contact"><span class="cursor-pointer hover:text-black">Contact</span></a>
                     <a href="#prologue"><span class="cursor-pointer hover:text-black">Prologue</span></a>
                 </div>
-
             </div>
 
             
             <!-- Hover banners -->
             <img src="{{ url_for('data', filename=data[0].project_id + '/' + data[0].hero_image) }}" 
-                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
-                id="banner-1">
+            class="absolute top-0 w-full h-full object-cover z-5 opacity-0 transition-opacity duration-500"
+            id="banner-1">
             <img src="{{ url_for('data', filename=data[1].project_id + '/' + data[1].hero_image) }}" 
-                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
-                id="banner-2">
+            class="absolute top-0 w-full h-full object-cover z-5 opacity-0 transition-opacity duration-500"
+            id="banner-2">
             <img src="{{ url_for('data', filename=data[2].project_id + '/' + data[2].hero_image) }}" 
-                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
-                id="banner-3">
+            class="absolute top-0 w-full h-full object-cover z-5 opacity-0 transition-opacity duration-500"
+            id="banner-3">
             <img src="{{ url_for('data', filename=data[3].project_id + '/' + data[3].hero_image) }}" 
-                class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
-                id="banner-4">
+            class="absolute top-0 w-full h-full object-cover z-5 opacity-0 transition-opacity duration-500"
+            id="banner-4">
         </div>
 
         <!-- Texts -->
-        <div class="absolute bottom-7 left-7 space-y-1 text-white text-4xl font-inter font-extrabold z-20">
+        <div class="absolute bottom-7 left-7 space-y-1 text-white text-xl md:text-4xl font-inter font-extrabold z-20 [text-shadow:0_2px_8px_rgba(0,0,0,0.4)]">
             <p class="hover:text-[#E2E2E2]"
             onmouseover="showBanner(1)" 
             onmouseout="hideBanner(1)">
@@ -75,22 +68,22 @@
         </div>
     </div>
 
-    <div id="prologue" class="prologue relative w-screen">
-        <div class="grid grid-cols-3 gap-2 px-6 pt-25">
-            <div class="col-span-1 font-bold opacity-55 text-2xl flex items-end">
+    <div id="prologue" class="w-screen">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 px-6 pt-25">
+            <div class="md:col-span-1 font-bold opacity-55 text-2xl">
                 <p>Prologue</p>
             </div>
-            <div class="col-span-2 font-bold text-4xl flex items-end pl-2">
+            <div class="md:col-span-2 font-bold text-4xl md:pl-2">
                 <p>Lê Hồng Phát  黎洪發</p>
             </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 px-6 pt-8">
-            <img class="col-span-1" src="{{ url_for('static', filename='Selfie.png') }}">
-            <div class="col-span-2 border-l-1 pl-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 px-6 pt-8">
+            <img class="md:col-span-1 w-full h-full object-cover" src="{{ url_for('static', filename='Selfie.png') }}">
+            <div class="md:col-span-2 border-l-1 pl-2">
                 <div class="pt-10">
                 </div>
-                <div id="contact" class="contact-info border-t-1 border-b-1 grid grid-cols-8 gap-7 flex items-center py-3 font-medium text-sm opacity-55">
+                <div id="contact" class="contact-info border-t-1 border-b-1 grid grid-cols-8 gap-2 md:gap-7 flex items-center py-3 font-medium text-sm opacity-55">
                     <div class="col-span-1">
                     </div>
                     <div class="col-span-1 text-balance break-all">
@@ -110,7 +103,7 @@
                     <div class="pt-18 pb-3">
                         <p class="font-bold text-4xl">Education</p>
                     </div>
-                    <div class="border-t-1 grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="border-t-1 grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -128,7 +121,7 @@
                         <div class="col-span-7 border-t-1">
                         </div>
                     </div>
-                    <div class="border-b-1 grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="border-b-1 grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -146,7 +139,7 @@
                     <div class="pt-18 pb-3">
                         <p class="font-bold text-4xl">Experience</p>
                     </div>
-                    <div class="border-t-1 grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="border-t-1 grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -165,7 +158,7 @@
                         <div class="col-span-7 border-t-1">
                         </div>
                     </div>
-                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -184,7 +177,7 @@
                         <div class="col-span-7 border-t-1">
                         </div>
                     </div>
-                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -203,7 +196,7 @@
                         <div class="col-span-7 border-t-1">
                         </div>
                     </div>
-                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -222,7 +215,7 @@
                         <div class="col-span-7 border-t-1">
                         </div>
                     </div>
-                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -241,7 +234,7 @@
                         <div class="col-span-7 border-t-1">
                         </div>
                     </div>
-                    <div class="grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -260,7 +253,7 @@
                         <div class="col-span-7 border-t-1">
                         </div>
                     </div>
-                    <div class="border-b-1 grid grid-cols-8 gap-7 flex items-center py-1">
+                    <div class="border-b-1 grid grid-cols-8 gap-1 md:gap-7 flex items-center py-1">
                         <div class="col-span-1">
                         </div>
                         <div class="col-span-1 text-balance font-medium text-xs italic">
@@ -277,12 +270,12 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 px-6 pt-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 px-6 pt-20">
             <div class="title col-span-1">
                 <p class="font-bold text-3xl">Creative Designer&nbsp;&nbsp;&<br>Visual Storyteller</p>
                 <p class="text-xl opacity-55 pt-2">Designing visual that feel like emotion wearing shapes</p>
             </div>
-            <div class="about col-span-2 pl-2">
+            <div class="about col-span-2 pt-2 md:pt-0 md:pl-2">
                 <p class="text-xl/6 opacity-55">Brand & Packaging Designer with 5+ years of experience across agencies, consumer brands, and international exhibitions. Specialized in building visual identities and packaging systems that connect with Gen Z & Millennials. Proven ability to scale new brands from zero to thousands of customers, with work spanning beauty, lifestyle, and large-scale industrial events</p>
                 <p class="text-xl opacity-55">Designing visual that feel like emotion wearing shapes.</p>
             </div>
@@ -294,15 +287,15 @@
             Feature Works
         </div>
 
-        <div id="cardGrid" class="overflow-hidden grid grid-cols-3 pt-15 gap-x-5 gap-y-10 transition-all duration-500">
+        <div id="cardGrid" class="overflow-hidden grid grid-cols-1 md:grid-cols-3 pt-15 gap-x-5 gap-y-10 transition-all duration-500">
             {%for project in data%}
                 <a href="{{ url_for('project', project_id=project.project_id) }}">
                     <div class="tile">
-                    <img src="{{ url_for('data', filename=project.project_id + '/' + project.hero_image) }}" alt="{{ project.title }}" class="w-full h-auto">
+                    <img src="{{ url_for('data', filename=project.project_id + '/' + project.hero_image) }}" alt="{{ project.title }}" class="aspect-3/2">
                     <p class="text-xs italic pt-7 font-medium opacity-55">{{ project.client }}</p>
-                    <div class="columns-2">
-                        <p class="font-bold text-lg whitespace-nowrap">{{ project.name }}</p>
-                        <p class="opacity-55 text-right">{{ project.year }}</p>
+                    <div class="md:flex md:justify-between">
+                        <p class="font-bold text-lg">{{ project.name }}</p>
+                        <p class="opacity-55">{{ project.year }}</p>
                     </div>
                 </div></a>
             {%endfor%}
@@ -315,13 +308,13 @@
         </div>
     </div>
 
-    <div class="footer relative w-screen px-10 pt-10 pb-30 bg-black">
-        <div class="grid grid-cols-3 text-white">
-            <div class="col-span-2">
+    <div class="footer relative w-screen md:px-10 px-5 pt-10 pb-30 bg-black">
+        <div class="grid grid-cols-1 md:grid-cols-3 text-white">
+            <div class="col-span-1 md:col-span-2">
                 <img src="{{ url_for('static', filename='Footer_logo.svg') }}" alt="Footer Logo">
                 <p class="font-medium text-xs opacity-55 pt-10">2026 ® All rights reserved.</p>
             </div>
-            <div class="col-span-1 pl-20 pt-5 font-semibold flex gap-10">
+            <div class="opacity-0 md:opacity-100 col-span-1 md:col-span-1 pl-20 pt-5 font-semibold flex gap-10">
                 <a href="#works"><p class="hover:opacity-55 cursor-pointer">Works</p></a>
                 <a href="#contact"><p class="hover:opacity-55 cursor-pointer">Contact</p></a>
                 <a href="#prologue"><p class="hover:opacity-55 cursor-pointer">Prologue</p></a>

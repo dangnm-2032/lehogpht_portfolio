@@ -11,31 +11,26 @@
     <link href="{{ url_for('static', filename='dist/output.css') }}" rel="stylesheet">
 </head>
 <body class="font-inter">
-    <div class="hero relative w-screen h-[45vh] overflow-hidden animate-hero-shrink">
+    <div class="w-screen h-auto pt-5 pb-10 md:px-10 px-5">
         <!-- Hero Banner Images -->
-        <div class="absolute inset-0">
-            <div class="relative top-5 left-0 w-full h-full px-8">
-                <!-- Logo -->
-                 <a href="/">
-                    <img src="{{ url_for('static', filename='Name.svg') }}"
-                        class="absolute w-12/13 animate-topimage"
-                        alt="Top Image">
-                 </a>
-
-                <!-- Text row -->
-                <div class="absolute top-45 flex gap-6 text-black text-xl font-inter font-extrabold animate-nav">
-                    <a href="/#works"><span class="cursor-pointer hover:text-black/20">Works</span></a>
-                    <a href="/#contact"><span class="cursor-pointer hover:text-black/20">Contact</span></a>
-                    <a href="/#prologue"><span class="cursor-pointer hover:text-black/20">Prologue</span></a>
-                </div>
-
+        <div class="md:flex md:justify-between z-10">
+            <a href="/">
+                <img src="{{ url_for('static', filename='Name.svg') }}" 
+                class="md:w-1/3" alt="">
+            </a>
+            <div class="flex gap-6 text-black items-center text-xl font-extrabold pt-5 md:pt-0">
+                <a href="/#works"><span class="cursor-pointer hover:text-black/20">Works</span></a>
+                <a href="/#contact"><span class="cursor-pointer hover:text-black/20">Contact</span></a>
+                <a href="/#prologue"><span class="cursor-pointer hover:text-black/20">Prologue</span></a>
             </div>
         </div>
+            
     </div>
 
-    <div class="project-content w-screen px-8 pb-8">
-        <img src="{{ url_for('data', filename=project.project_id + '/' + project.hero_image) }}" alt="Project Image">
-        <div class="grid grid-cols-2 py-16 items-start">
+    <div class="relative project-content w-screen px-5 md:px-8 pb-8">
+        <img src="{{ url_for('data', filename=project.project_id + '/' + project.hero_image) }}" 
+        class="w-full h-auto object-cover" alt="Project Image">
+        <div class="grid grid-cols-1 md:grid-cols-2 py-16 items-start">
             <div>
                 <p class="font-bold text-5xl pb-5">{{ project.name }}</p>
                 <p class="font-bold text-sm">Industry</p>
@@ -67,28 +62,29 @@
                 </div>
                 {% endif %}
             </div>
-            <div class="">
+            <div class="pt-10 md:pt-0">
                 <p class="font-bold text-2xl">{{ project.title }}</p>
                 <br>
-                <p class="whitespace-pre-line">{{ project.description }}</p>
+                <p class="whitespace-pre-line text-justify">{{ project.description }}</p>
             </div>
         </div>
         {% for images in project.images %}
         <div class="grid {% if images|length == 2 %}grid-cols-2{% endif %} gap-0">
             {% for image in images %}
-            <img src="{{ url_for('data', filename=project.project_id + '/' + image) }}" alt="">
+            <img src="{{ url_for('data', filename=project.project_id + '/' + image) }}" 
+            class="w-full h-full object-cover" alt="">
             {% endfor %}
         </div>
         {% endfor %}
     </div>
 
-    <div class="footer relative w-screen px-10 pt-10 pb-30 bg-black">
-        <div class="grid grid-cols-3 text-white">
-            <div class="col-span-2">
+    <div class="footer relative w-screen md:px-10 px-5 pt-10 pb-30 bg-black">
+        <div class="grid grid-cols-1 md:grid-cols-3 text-white">
+            <div class="col-span-1 md:col-span-2">
                 <img src="{{ url_for('static', filename='Footer_logo.svg') }}" alt="Footer Logo">
                 <p class="font-medium text-xs opacity-55 pt-10">2026 ® All rights reserved.</p>
             </div>
-            <div class="col-span-1 pl-20 pt-5 font-semibold flex gap-10">
+            <div class="opacity-0 md:opacity-100 col-span-1 md:col-span-1 pl-20 pt-5 font-semibold flex gap-10">
                 <a href="/#works"><p class="hover:opacity-55 cursor-pointer">Works</p></a>
                 <a href="/#contact"><p class="hover:opacity-55 cursor-pointer">Contact</p></a>
                 <a href="/#prologue"><p class="hover:opacity-55 cursor-pointer">Prologue</p></a>
