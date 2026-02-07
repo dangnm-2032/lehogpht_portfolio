@@ -209,3 +209,4 @@ __marimo__/
 node_modules/
 *.json
 data/
+test_data/
