@@ -157,8 +157,7 @@ def project_action():
     for key in validate_key:
         if key not in meta:
             return f"Invalid meta.yaml: {key} not found", 400
-        if not meta[key]:
-            return f"Invalid meta.yaml: {key} is empty", 400
+ 
 
     # Validate images
     if not os.path.exists(os.path.join(working_dir, meta['hero_image'])):
