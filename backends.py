@@ -1,7 +1,5 @@
 import os
 import re
-from collections import defaultdict
-import zipfile
 import unicodedata
 
 DATA_FOLDER = 'data/'
