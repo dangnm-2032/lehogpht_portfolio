@@ -32,6 +32,7 @@ def home():
     
     # Get all projects
     projects_data = []
+    categories = []
     for _, project_id in projects.items():
         data_dir = os.path.join(DATA_FOLDER, project_id)
         meta_file = os.path.join(data_dir, "meta.yaml")
@@ -39,8 +40,11 @@ def home():
             meta = yaml.safe_load(f)
             meta['project_id'] = project_id
             projects_data.append(meta)
-            
-    return render_template("home.html", data=projects_data)
+            categories = categories + meta['whatwedid'].split(', ') if meta['whatwedid'] else categories
+
+    categories = set(categories)       
+    
+    return render_template("home.html", data=projects_data, categories=categories)
 
 @app.route("/project/<project_id>")
 def project(project_id):
@@ -51,6 +55,15 @@ def project(project_id):
         with open(meta_file, "r") as f:
             meta = yaml.safe_load(f)
             meta['project_id'] = project_id
+            paragraphs = meta['description'].split("<paragraph>")
+            meta['description'] = []
+            for para in paragraphs:
+                para = para.split('\n')
+                heading = para[0]
+                content = '\n'.join(para[1:])
+                if heading and content:
+                    meta['description'].append((heading, content))
+
             return render_template("project.html", project=meta)
     return "Project not found", 404
 
@@ -140,12 +153,14 @@ def project_action():
     with open(os.path.join(working_dir, "meta.yaml"), "r") as f:
         meta = yaml.load(f, Loader=yaml.FullLoader)
 
-    validate_key = ['name', 'client', 'year', 'industry', 'whatwedid', 'title', 'description', 'hero_image', 'images']
+    validate_key = ['name', 'client', 'year', 'industry', 'whatwedid', 'description', 'hero_image', 'images']
     
     # Validate meta.yaml
     for key in validate_key:
         if key not in meta:
             return f"Invalid meta.yaml: {key} not found", 400
+        if not meta[key]:
+            return f"Invalid meta.yaml: {key} is empty", 400
 
     # Validate images
     if not os.path.exists(os.path.join(working_dir, meta['hero_image'])):
@@ -254,7 +269,7 @@ def project_change_order(project_id, current_order):
         projects = {}
     
     # Move project to new position
-    projects = reorder_dict(projects, projects[current_order-1], int(new_order))
+    projects = reorder_dict(projects, project_id, int(new_order))
     
     # Save projects.yaml
     with open(os.path.join(DATA_FOLDER, "projects.yaml"), "w") as f:

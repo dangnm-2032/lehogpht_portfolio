@@ -29,8 +29,8 @@
 
     <div class="relative project-content w-screen px-5 md:px-8 pb-8">
         <img src="{{ url_for('data', filename=project.project_id + '/' + project.hero_image) }}" 
-        class="w-full h-auto object-cover" alt="Project Image">
-        <div class="grid grid-cols-1 md:grid-cols-2 py-16 items-start">
+        class="w-full h-auto object-cover" alt="Project Image"/>
+        <div class="grid grid-cols-1 md:grid-cols-2 py-16 items-start md:w-4/5 mx-auto">
             <div>
                 <p class="font-bold text-5xl pb-5">{{ project.name }}</p>
                 <p class="font-bold text-sm">Industry</p>
@@ -63,13 +63,40 @@
                 {% endif %}
             </div>
             <div class="pt-10 md:pt-0">
-                <p class="font-bold text-2xl">{{ project.title }}</p>
-                <br>
-                <p class="whitespace-pre-line text-justify">{{ project.description }}</p>
+                <div class="relative">
+                    <!-- Content -->
+                    <div id="description-content"
+                        class="overflow-hidden transition-[max-height] duration-500 ease-in-out max-h-40">
+
+                        {% for heading, content in project.description %}
+                            <p class="font-bold text-2xl">{{ heading }}</p>
+                            <br>
+                            <p class="whitespace-pre-line text-justify">{{ content }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Blur + Gradient overlay -->
+                    <div id="fade-overlay"
+                        class="absolute bottom-0 left-0 right-0 h-16
+                                bg-gradient-to-t from-white to-transparent
+                                pointer-events-none transition-opacity duration-300">
+                    </div>
+
+                </div>
+
+                <button
+                    onclick="toggleDescription()"
+                    id="description-btn"
+                    class="mt-4 font-semibold underline">
+                    See more
+                </button>
+
             </div>
+
+
         </div>
         {% for images in project.images %}
-        <div class="grid {% if images|length == 2 %}grid-cols-2{% endif %} gap-0">
+        <div class="grid {% if images|length == 2 %}grid-cols-2{% endif %} gap-5 pt-5 md:w-4/5 mx-auto">
             {% for image in images %}
             <img src="{{ url_for('data', filename=project.project_id + '/' + image) }}" 
             class="w-full h-full object-cover" alt="">
@@ -91,5 +118,29 @@
             </div>
         </div>
     </div>
+
+<script>
+let expanded = false
+
+function toggleDescription() {
+    const content = document.getElementById('description-content')
+    const btn = document.getElementById('description-btn')
+    const fade = document.getElementById('fade-overlay')
+
+    if (!expanded) {
+        content.style.maxHeight = content.scrollHeight + "px"
+        btn.textContent = "See less"
+        fade.style.opacity = "0"
+    } else {
+        content.style.maxHeight = "10rem"  // same as max-h-40
+        btn.textContent = "See more"
+        fade.style.opacity = "1"
+    }
+
+    expanded = !expanded
+}
+</script>
+
+
 </body>
 </html>
