@@ -326,7 +326,7 @@
             transition-[max-height] duration-500 ease-in-out
             max-h-[300px] md:max-h-[600px] overflow-hidden">
                 {%for project in data%}
-                    <div class="project break-inside-avoid mb-10"
+                    <div class="project break-inside-avoid mb-10 transition-opacity duration-300"
                         data-keywords="{{ project.whatwedid | lower }}">
                         <a href="{{ url_for('project', project_id=project.project_id) }}">
                             <div class="tile">
@@ -421,24 +421,28 @@ function filterProjects(keyword) {
     const projects = document.querySelectorAll('.project')
     const label = document.getElementById('selected-label')
 
-    if (keyword === 'all') {
-        label.textContent = 'Everything'
-    } else {
-        label.textContent = keyword
-    }
+    // Update label
+    label.textContent = keyword === 'all'
+        ? 'Everything'
+        : keyword.replace(/\b\w/g, l => l.toUpperCase())
 
     projects.forEach(project => {
         const keywords = project.dataset.keywords
 
-        if (keyword === 'all') {
+        if (keyword === 'all' || keywords.includes(keyword)) {
+            // Show with fade in
             project.style.display = 'block'
-            return
-        }
-
-        if (keywords.includes(keyword)) {
-            project.style.display = 'block'
+            requestAnimationFrame(() => {
+                project.style.opacity = '1'
+            })
         } else {
-            project.style.display = 'none'
+            // Fade out first
+            project.style.opacity = '0'
+
+            // Then hide after animation
+            setTimeout(() => {
+                project.style.display = 'none'
+            }, 300) // match duration-300
         }
     })
 }
